@@ -1,0 +1,11 @@
+default: &default
+  url: https://www.ksl.com
+
+production:
+  <<: *default
+
+development:
+  <<: *default
+
+test:
+  <<: *default
