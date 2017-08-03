@@ -1,5 +1,7 @@
+require 'ksl_client/base_client'
+
 module KslClient
-  class Classified < ::KslClient::BaseClient
+  class Classified < BaseClient
     RESOURCE = "classifieds".freeze
     SERVICE = "search".freeze
 
