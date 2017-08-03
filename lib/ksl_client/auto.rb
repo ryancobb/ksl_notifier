@@ -15,24 +15,14 @@ module KslClient
 
     private
 
-    def parse_results
-      html_doc = Nokogiri::HTML(html_results)
-
-      html_doc.css('.listing').each do |listing|
-        create_listing(listing)
-      end
-    end
-
     def create_listing(listing)
-      new_listing = ::Listing.new(
+      new_listing = ::Listing.create!(
         :title => listing.css('.title a').children.text.squish,
         :short_description => listing.css('.srp-listing-description > text()').text.squish, 
         :location => listing.css('.listing-detail-line text()')[2].text.gsub(/[|]/, '').squish,
         :link => listing.css('.link').attr('href').value,
-        :price => listing.css('.listing-detail-line.price text()').text.squish.gsub(/[$,]/,'').to_f
+        :price_cents => listing.css('.listing-detail-line.price > text()').text.squish.gsub(/[$,]/,'').to_f*100
       )
-
-      new_listing.save
     end
   end
 end

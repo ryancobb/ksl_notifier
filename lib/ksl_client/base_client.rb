@@ -6,7 +6,6 @@ module KslClient
       @query_params = query_params
       @base_url = Rails.configuration.ksl["url"]
       @browser = ::Browser::Client.new
-      
     end
 
     def html_results
@@ -15,10 +14,22 @@ module KslClient
 
     private
 
+    def parse_results
+      html_doc = Nokogiri::HTML(html_results)
+
+      listings(html_doc).map do |listing|
+        create_listing(listing)
+      end
+    end
+
     def fetch_results
       puts "Visiting: #{url}"
       @browser.visit(url)
       @browser.page.body
+    end
+
+    def listings(html_doc)
+      html_doc.css('.listing-group .listing')
     end
 
     def url

@@ -29,10 +29,11 @@ ActiveRecord::Schema.define(version: 20170729073536) do
     t.text     "full_description"
     t.text     "location"
     t.text     "link"
-    t.decimal  "price",             precision: 8, scale: 2
+    t.integer  "price_cents",       default: 0,     null: false
+    t.string   "price_currency",    default: "USD", null: false
     t.date     "posted_on"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "users", force: :cascade do |t|

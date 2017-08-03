@@ -6,7 +6,7 @@ class CreateListings < ActiveRecord::Migration[5.0]
       t.text :full_description
       t.text :location
       t.text :link
-      t.decimal :price, :precision => 8, :scale => 2
+      t.monetize :price
       t.date :posted_on
 
       t.timestamps
