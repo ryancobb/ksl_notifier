@@ -31,6 +31,7 @@ module KslClient
     def fetch_results
       puts "Visiting: #{url}"
       @browser.visit(url)
+      @browser.find(".ksl-header-logo")
       @browser.page.body
     end
 
@@ -39,7 +40,7 @@ module KslClient
     end
 
     def url
-      "#{BASE_URL}/#{@resource}/#{@service}?#{@query_params.to_query}"
+      "#{BASE_URL}/#{@resource}/#{@service}?#{@query_params}"
     end
   end
 end

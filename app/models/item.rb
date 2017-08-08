@@ -24,7 +24,7 @@ class Item < ApplicationRecord
   end
 
   def parse_query_params
-    CGI.parse(URI.parse(search_url).query)
+    URI.parse(search_url).query
   end
 
   def query_params

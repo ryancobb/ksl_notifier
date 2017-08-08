@@ -4,7 +4,7 @@ gem 'devise'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'capybara'
-gem 'poltergeist'
+gem 'selenium-webdriver'
 gem 'money-rails', '~>1'
 
 git_source(:github) do |repo_name|
