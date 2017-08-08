@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 gem 'capybara'
 gem 'poltergeist'
 gem 'money-rails', '~>1'

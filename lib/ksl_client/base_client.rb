@@ -1,18 +1,24 @@
 module KslClient
   class BaseClient
+    BASE_URL = Rails.configuration.ksl["url"].freeze
+
     def initialize(resource, service, query_params)
       @resource = resource
       @service = service
       @query_params = query_params
-      @base_url = Rails.configuration.ksl["url"]
       @browser = ::Browser::Client.new
     end
 
-    def html_results
-      @html_results ||= fetch_results
+
+    def self.regex_matcher
+      /#{::KslClient::BaseClient::BASE_URL}\/#{self::RESOURCE}\/#{self::SERVICE}/
     end
 
     private
+    
+    def html_results
+      @html_results ||= fetch_results
+    end
 
     def parse_results
       html_doc = Nokogiri::HTML(html_results)
@@ -33,7 +39,7 @@ module KslClient
     end
 
     def url
-      "#{@base_url}/#{@resource}/#{@service}?#{@query_params.to_query}"
+      "#{BASE_URL}/#{@resource}/#{@service}?#{@query_params.to_query}"
     end
   end
 end

@@ -16,7 +16,7 @@ module KslClient
     private
 
     def create_listing(listing)
-      new_listing = ::Listing.create!(
+      new_listing = ::Listing.new(
         :title => listing.css('.title a').children.text.squish,
         :short_description => listing.css('.description-text > text()').text.squish, 
         :location => listing.css('.address').text.squish,

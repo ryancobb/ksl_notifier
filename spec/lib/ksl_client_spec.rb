@@ -5,13 +5,14 @@ describe "auto client" do
   let(:search_query) { "some=query&some=otherquery"}
   let(:response) { File.open(Rails.root.join 'spec/fixtures/auto_results.html').read }
   let(:auto_client) { ::KslClient::Auto.new(search_query)}
+  let(:item) { Item.new }
 
   before do
     expect(auto_client).to receive(:html_results).and_return(response)
   end
   
   it "creates listings" do
-    expect{ auto_client.results }.to change{ ::Listing.all.count }.by(30)
+    expect(auto_client.results.count).to eq(30)
   end
 
   it "correctly parses listings" do
@@ -35,7 +36,7 @@ describe "classified client" do
   end
   
   it "creates listings" do
-    expect{ classified_client.results }.to change{ ::Listing.all.count }.by(24)
+    expect(classified_client.results.count).to eq(24)
   end
 
   it "correctly parses listings" do
