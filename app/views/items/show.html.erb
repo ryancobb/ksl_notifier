@@ -1,2 +1,31 @@
-<%= @item.name %>
-<%= @item.search_url %>
+<div class="section">
+  <div class="container">
+    <h1 class="title"><%= @item.name %></h1>
+    <h2 class="subtitle"><%= link_to "Refresh", refresh_item_path(@item) %></h2>
+    <% @listings.each do |listing| %>
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-128x128">
+              <%= image_tag listing.photo_url %>
+            </figure>
+          </div>
+          <div class="media-content" >
+            <div class="content">
+              <p>
+                <strong><%= listing.title %></strong>
+                <small><%= humanized_money_with_symbol listing.price %></small>
+                <br>
+                <%= listing.short_description %>
+            </div>
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <%= link_to "Link", listing.link, :class => "level-item" %>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </div>
+    <% end %>
+  </div>
+</div>

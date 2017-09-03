@@ -1,18 +1,19 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.by_user(current_user)
+    @items = ::Item.by_user(current_user)
   end
 
   def show
-    @item = Item.by_user(current_user).find(params[:id])
+    @item = ::Item.by_user(current_user).find(params[:id])
+    @listings = @item.listings
   end
 
   def new
-    @item = Item.new
+    @item = ::Item.new
   end
 
   def create
-    @item = Item.new(item_create_params)
+    @item = ::Item.new(item_create_params)
 
     if @item.save
       flash[:success] = "Item successfuly created"
@@ -21,6 +22,14 @@ class ItemsController < ApplicationController
       flash[:error] = @item.errors.full_messages
       render :new
     end
+  end
+
+  def refresh
+    @item = ::Item.by_user(current_user).find(params[:id])
+
+    ::ScrapeItemWorker.perform_async(@item.id)
+    flash[:notice] = "Updating item..."
+    redirect_to @item
   end
 
   private

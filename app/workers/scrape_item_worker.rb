@@ -2,6 +2,8 @@ class ScrapeItemWorker
   include Sidekiq::Worker
 
   def perform(item_id)
-    # Do something
+    item = ::Item.find(item_id)
+
+    item.update_listings
   end
 end

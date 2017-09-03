@@ -9,7 +9,6 @@ module KslClient
       @browser = ::Browser::Client.new
     end
 
-
     def self.regex_matcher
       /#{::KslClient::BaseClient::BASE_URL}\/#{self::RESOURCE}\/#{self::SERVICE}/
     end

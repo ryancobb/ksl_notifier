@@ -1,0 +1,13 @@
+<% if current_user %>
+  <div class="navbar-link has-dropdown is-right is-hoverable">
+    <%= link_to "Profile", edit_user_registration_path, :class => "navbar-item" %>
+    <div class="navbar-dropdown">
+      <%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "navbar-item"%>
+    </div>
+  </div>
+<% else %>
+  <div class="navbar-item">
+    <%= link_to "Login", new_user_session_path %>
+  </div>
+<% end %>
+</div>
