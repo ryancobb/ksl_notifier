@@ -57,7 +57,7 @@ group :development do
   gem 'rspec-rails', '~> 3.5'
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.3'
-  gem 'capistrano-puma'
+  gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
 end
 
