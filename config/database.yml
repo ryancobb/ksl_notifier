@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: ksl_notifier_production
-  username: ryancobb
+  username: deploy
   password: <%= ENV['KSL_NOTIFIER_DATABASE_PASSWORD'] %>

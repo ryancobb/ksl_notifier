@@ -1,11 +1,10 @@
 # config valid only for current version of Capistrano
 lock "3.9.0"
 
-server '45.76.70.99', :roles [:web, :app, :db], :primary => true
+server '45.76.70.99', :user => 'deploy', :roles => [:web, :app, :db], :primary => true
 
 set :application, "KslNotifier"
 set :repo_url, "git@github.com:ryancobb/ksl_notifier.git"
-set :user, 'deploy'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -81,3 +80,4 @@ namespace :deploy do
   after :finishing, :compile_assets
   after :finishing, :cleanup
   after :finishing, :restart
+end
