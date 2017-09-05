@@ -1,5 +1,5 @@
 # Change these
-server '45.76.70.99', port: 7171, roles: [:web, :app, :db], primary: true
+server '45.76.70.99', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:ryancobb/ksl_notifier.git'
 set :application,     'KslNotifier'
