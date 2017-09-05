@@ -43,7 +43,7 @@ namespace :puma do
     end
   end
 
-  before :start, :make_dirs
+before :start, :make_dirs
 end
 
 namespace :deploy do
