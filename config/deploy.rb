@@ -76,8 +76,7 @@ namespace :deploy do
     end
   end
 
-  before :starting, :check_revision
-  after :finishing, :compile_assets
-  after :finishing, :cleanup
-  after :finishing, :restart
+  before 'puma:config'
+  before 'puma:nginx_config'
+  after 'puma:start_restart', 'nginx:restart'
 end
