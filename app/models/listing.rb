@@ -9,10 +9,10 @@ class Listing < ApplicationRecord
   private
 
   def create_notification_for_create
-    ::Notification.create(:listing_id => id, :message => "A new listing has been created!")
+    ::Notification.create(:listing_id => id, :user_id => item.user_id, :message => "A new listing has been created!")
   end
 
   def create_notification_for_update
-    ::Notification.create(:listing_id => id, :message => "A listing has been updated!")
+    ::Notification.create(:listing_id => id, :user_id => item.user_id, :message => "A listing has been updated!")
   end
 end

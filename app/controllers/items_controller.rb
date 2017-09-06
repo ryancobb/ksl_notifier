@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = ::Item.by_user(current_user).find(params[:id])
-    @listings = @item.listings
+    @listings = @item.listings.order('id DESC')
   end
 
   def new

@@ -1,3 +1,8 @@
-test_job:
+scrape_items_worker:
   cron: "5 */1 * * *"
   class: "ScrapeItemsWorker"
+
+send_notification_emails_worker:
+  cron: "35 */1 * * *"
+  class: "UserNotificationEmailWorker"
+
