@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_raven_context
 
-  
   private
   
   def set_raven_context

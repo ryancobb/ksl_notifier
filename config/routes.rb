@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       root 'items#index'
-      mount Sidekiq::Web => '/sidekiq' # TODO: Move this to admin route
       
       resources :items do
         get :refresh, :on => :member
@@ -18,6 +17,10 @@ Rails.application.routes.draw do
 
     unauthenticated do
       root 'devise/sessions#new'
+    end
+    
+    authenticate :user, ->(user) { user.admin? } do
+      mount Sidekiq::Web => '/sidekiq'
     end
   end
 
