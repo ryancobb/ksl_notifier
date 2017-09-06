@@ -9,7 +9,7 @@ class Item < ApplicationRecord
     new_listings.each do |new_listing|
       old_listing = listings.find_by_link(new_listing.link)
 
-      if old_listing
+      if old_listing.present?
         new_listing_attributes = new_listing.attributes.reject do |k,v|
           ["id", "created_at", "updated_at", "item_id"].include?(k)
         end

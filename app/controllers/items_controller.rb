@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = ::Item.by_user(current_user).find(params[:id])
-    @listings = @item.listings.order('id DESC')
+    @listings = @item.listings.order('id ASC')
   end
 
   def new
@@ -22,6 +22,13 @@ class ItemsController < ApplicationController
       flash[:error] = @item.errors.full_messages
       render :new
     end
+  end
+
+  def destroy
+    @item = ::Item.by_user(current_user).find(params[:id])
+    @item.destroy
+ 
+    redirect_to items_path
   end
 
   def refresh
