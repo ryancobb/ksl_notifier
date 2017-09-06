@@ -6,6 +6,7 @@ gem 'sidekiq-cron'
 gem 'capybara'
 gem 'selenium-webdriver'
 gem 'money-rails', '~>1'
+gem 'sentry-raven'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
