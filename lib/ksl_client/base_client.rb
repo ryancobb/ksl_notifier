@@ -29,9 +29,12 @@ module KslClient
 
     def fetch_results
       puts "Visiting: #{url}"
-      @browser.visit(url)
-      @browser.find(".ksl-header-logo")
-      @browser.page.body
+      @browser.session.visit(url)
+      @browser.session.find(".ksl-header-logo")
+      results = @browser.session.body
+      @browser.session.driver.quit
+
+      results
     end
 
     def listings(html_doc)
