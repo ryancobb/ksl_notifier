@@ -1,8 +1,8 @@
 scrape_items_worker:
-  cron: "5 */1 * * *"
+  cron: "*/15 * * * *"
   class: "ScrapeItemsWorker"
 
 send_notification_emails_worker:
-  cron: "35 */1 * * *"
+  cron: "0 */1 * * *"
   class: "UserNotificationEmailWorker"
 
