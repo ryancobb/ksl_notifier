@@ -27,7 +27,7 @@ class Item < ApplicationRecord
   def get_listings
     client = infer_client
     client = client.new(query_params)
-    listings = client.results
+    client.results
   end
 
   def infer_client
