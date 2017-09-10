@@ -30,7 +30,7 @@ module KslClient
       uri = set_uri(link)
 
       uri.query = nil
-      BASE_URL + uri.to_s
+      BASE_URL + uri.path
     end
 
     def set_uri(link)

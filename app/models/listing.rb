@@ -1,5 +1,6 @@
 class Listing < ApplicationRecord
   belongs_to  :item
+  has_many :notifications, :dependent => :destroy
 
   after_commit :create_notification_for_create, :on => [:create]
   after_commit :create_notification_for_update, :on => [:update]

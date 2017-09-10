@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   has_many :listings, :dependent => :destroy
-  has_many :notifications, :dependent => :destroy
 
   scope :by_user, -> (user) { where(:user_id => user.id) }
 

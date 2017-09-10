@@ -20,7 +20,7 @@ describe "auto client" do
       :title => "2016 Toyota Tacoma TRD Sport",
       :short_description => "LONG BED. ONE-OWNER CLEAN CARFAX. Tacoma TRD Sport 4...",
       :location => "St. George, UT",
-      :link => "https://www.ksl.com/auto/listing/3887365?ad_cid=1",
+      :link => "https://www.ksl.com/auto/listing/3887365",
       :price => Money.new(3699900)
     )
   end
