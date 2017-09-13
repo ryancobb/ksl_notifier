@@ -31,10 +31,10 @@ module KslClient
       puts "Visiting: #{url}"
       @browser.session.visit(url)
       @browser.session.find(".ksl-header-logo")
-      results = @browser.session.body
+      
+      @browser.session.body
+    ensure
       @browser.session.driver.quit
-
-      results
     end
 
     def listings(html_doc)
