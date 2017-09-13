@@ -2,7 +2,7 @@
 server '45.76.70.99', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:ryancobb/ksl_notifier.git'
-set :application,     'KslNotifier'
+set :application,     'ksl_notifier'
 set :user,            'deploy'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
