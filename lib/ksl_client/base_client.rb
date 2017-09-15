@@ -34,7 +34,7 @@ module KslClient
       
       @browser.session.body
     ensure
-      @browser.session.driver.quit
+      @browser.session.try(:driver).try(:quit)
     end
 
     def listings(html_doc)

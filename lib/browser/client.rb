@@ -5,6 +5,8 @@ module Browser
 
     def initialize
       @session = ::Capybara::Session.new(:selenium_chrome_headless)
+
+      raise Exception.new("Failed to create browser session") unless @session
     end
   end
 end
