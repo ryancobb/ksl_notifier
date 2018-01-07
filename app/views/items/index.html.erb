@@ -1,7 +1,7 @@
 <%= link_to "Add an item to get notifications for", new_item_path %>
 
 <div class="section">
-  <div class="container">
+  <div>
     <% @items.each do |item| %>
       <%= link_to item do %>
         <div class="box">

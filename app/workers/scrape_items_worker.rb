@@ -1,7 +1,7 @@
 class ScrapeItemsWorker
   include Sidekiq::Worker
 
-  def perform(*args)
+  def perform
     items = Item.all
 
     items.each do |item|
