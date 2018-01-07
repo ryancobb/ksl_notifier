@@ -20,7 +20,7 @@
         <article class="media">
           <div class="media-left">
             <figure class="image is-128x128">
-              <%= image_tag listing.photo_url %>
+              <%= image_tag listing.photo_url if listing.photo_url %>
             </figure>
           </div>
           <div class="media-content" >

@@ -38,10 +38,6 @@ module KslClient
     def html_results
       @html_results ||= fetch_results
     end
-    
-    def listings(html_doc)
-      html_doc.css('.listing-group .listing')
-    end
 
     def parse_results
       html_doc = Nokogiri::HTML(html_results)

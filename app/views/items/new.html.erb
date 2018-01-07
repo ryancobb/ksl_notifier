@@ -1,9 +1,17 @@
 <%= form_for @item do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <div class="field">
+    <%= f.label :name, :class => "label" %>
+    <div class="control">
+      <%= f.text_field :name, :class => "input" %>
+    </div>
+  </div>
 
-  <%= f.label :search_url %>
-  <%= f.text_field :search_url %>
+  <div class="field">
+    <%= f.label :search_url, :class => "label" %>
+    <div class="control">
+      <%= f.text_field :search_url, :class => "input" %>
+    </div>
+  </div>
 
-  <%= f.submit %>
+  <%= f.submit :class => "button is-primary" %>
 <% end %>

@@ -1,6 +1,10 @@
-<%= link_to "Add an item to get notifications for", new_item_path %>
-
 <div class="section">
+  <div class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <%= link_to "Add an item", new_item_path, :class => "level-item button is-primary" %>
+    </div>
+  </div>
   <div>
     <% @items.each do |item| %>
       <%= link_to item do %>

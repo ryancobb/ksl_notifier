@@ -5,7 +5,6 @@ describe "auto client" do
   let(:search_query) { "some=query&some=otherquery"}
   let(:response) { File.open(Rails.root.join 'spec/fixtures/auto_results.html').read }
   let(:auto_client) { ::KslClient::Auto.new(search_query)}
-  let(:item) { Item.new }
 
   before do
     expect(auto_client).to receive(:html_results).and_return(response)
@@ -41,11 +40,12 @@ describe "classified client" do
 
   it "correctly parses listings" do
     expect(classified_client.results.first).to have_attributes(
-      :title => "Rooftop cargo box Thule 669ES",
-      :short_description => "Key FeaturesPassenger-side opening for easier loading and unloadingEasy-Snap...",
-      :location => "Draper, UT",
-      :link => "https://www.ksl.com/classifieds/listing/45249878",
-      :price => Money.new(18000)
+      :title => "Vintage 1970's GE Mickey Mouse record player",
+      :short_description => "Vintage 1970's GE Mickey Mouse record player. Very good condtion. No damage. Works great... more",
+      :location => "South Jordan Utah, UT",
+      :link => "https://www.ksl.com/classifieds/listing/50719691",
+      :price => Money.new(7500),
+      :photo_url => nil
     )
   end
 end
