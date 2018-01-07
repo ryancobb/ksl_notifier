@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_many :listings, :dependent => :destroy
+  has_many :notifications, :dependent => :destroy
 
   scope :by_user, -> (user) { where(:user_id => user.id) }
 
@@ -36,6 +37,8 @@ class Item < ApplicationRecord
       ::KslClient::Auto
     when ::KslClient::Classified.regex_matcher
       ::KslClient::Classified
+    else
+      raise "Unsupported URL: #{search_url}"
     end
   end
 

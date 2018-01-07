@@ -3,6 +3,6 @@ scrape_items_worker:
   class: "ScrapeItemsWorker"
 
 send_notification_emails_worker:
-  cron: "0 */1 * * *"
+  cron: "*/5 * * * *"
   class: "UserNotificationEmailWorker"
 

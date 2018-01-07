@@ -1,22 +1,21 @@
 require 'ksl_client/base_client'
 
 module KslClient
-  class Classified < BaseClient
-    RESOURCE = "classifieds".freeze
-    SERVICE = "search".freeze
+  class Classified 
+    include BaseClient
 
-    def initialize(search_query)
-      super(RESOURCE, SERVICE, search_query)
-    end
+    RESOURCE = 'classifieds'.freeze
+    SERVICE = 'search'.freeze
 
-    def results
-      @results ||= parse_results
+    def initialize(query_params)
+      @query_params = query_params
+      @browser = ::Browser::Client.new
     end
 
     private
 
     def create_listing(listing)
-      new_listing = ::Listing.new(
+      ::Listing.new(
         :title => listing.css('.title a').children.text.squish,
         :short_description => listing.css('.description-text > text()').text.squish, 
         :location => listing.css('.address').text.squish,
