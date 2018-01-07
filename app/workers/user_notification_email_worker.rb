@@ -4,12 +4,15 @@ class UserNotificationEmailWorker
   def perform
     mg_client = Mailgun::Client.new(ENV["MAILGUN_API_KEY"])
 
-    User.find_each do |user|
+    user_ids = Notification.distinct(:user_id).undelivered_emails.pluck(:user_id)
+    users = User.where(:id => user_ids)
+
+    users.find_each do |user|
       undelivered_notifications = user.notifications.undelivered_emails
+      next unless undelivered_notifications.present?
+
       message = build_message(user, undelivered_notifications)
-
       mg_client.send_message("sandboxff64203728a14ec5a28d2a15f3f08e63.mailgun.org", message)
-
       undelivered_notifications.update_all(:emailed => true)
     end
   end

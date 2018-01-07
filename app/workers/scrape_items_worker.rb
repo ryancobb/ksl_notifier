@@ -5,7 +5,7 @@ class ScrapeItemsWorker
     items = Item.all
 
     items.each do |item|
-      ::ScrapeItemWorker.perform_async(item.id)
+      ::ScrapeItemWorker.new.perform(item.id)
     end
   end
 end
