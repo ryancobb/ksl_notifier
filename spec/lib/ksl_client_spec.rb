@@ -41,7 +41,7 @@ describe "classified client" do
   it "correctly parses listings" do
     expect(classified_client.results.first).to have_attributes(
       :title => "Vintage 1970's GE Mickey Mouse record player",
-      :short_description => "Vintage 1970's GE Mickey Mouse record player. Very good condtion. No damage. Works great... more",
+      :short_description => "Vintage 1970's GE Mickey Mouse record player. Very good condtion. No damage. Works great...",
       :location => "South Jordan Utah, UT",
       :link => "https://www.ksl.com/classifieds/listing/50719691",
       :price => Money.new(7500),
