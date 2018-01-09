@@ -1,1 +1,6 @@
-:concurrency: 5
+:queues:
+  - default
+  - browser
+
+:limits:
+  browser: 1

@@ -3,7 +3,7 @@ class ScrapeItemsWorker
 
   def perform
     Item.find_each do |item|
-      ::ScrapeItemWorker.new.perform(item.id)
+      ::ScrapeItemWorker.perform_async(item.id)
     end
   end
 end
