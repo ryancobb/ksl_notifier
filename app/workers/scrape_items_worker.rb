@@ -2,9 +2,7 @@ class ScrapeItemsWorker
   include Sidekiq::Worker
 
   def perform
-    items = Item.all
-
-    items.each do |item|
+    Item.find_each do |item|
       ::ScrapeItemWorker.new.perform(item.id)
     end
   end

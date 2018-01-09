@@ -25,14 +25,12 @@ module KslClient
 
     def fetch_results
       puts "Visiting: #{url}"
-      @browser.session.visit(url)
-      @browser.session.find(".ksl-header-logo")
+      @browser.visit(url)
+      @browser.find(".ksl-header-logo")
       
-      @browser.session.body
+      @browser.body
     rescue Net::ReadTimeout
       retry
-    ensure
-      @browser.session.try(:driver).try(:quit)
     end
     
     def html_results
