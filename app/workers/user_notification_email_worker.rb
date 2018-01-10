@@ -39,7 +39,7 @@ class UserNotificationEmailWorker
       message << item.name + "\n"
 
       listings.each do |listing|
-        message << listing.title + " - " + humanized_money_with_symbol(listing.price) + " - " + listing.link + "\n"
+        message << listing.title + " - " + listing.link + "\n"
       end
     end
 
