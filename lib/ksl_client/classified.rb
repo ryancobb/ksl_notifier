@@ -21,7 +21,7 @@ module KslClient
         :location => listing.css(".address").text.squish,
         :link => clean_link(listing.css('.item-info-title-link').attr('href').value),
         :price_cents => listing.css('.item-info-price.info-line').text.squish.gsub(/[$,]/,'').to_f*100,
-        :photo_url => nil
+        :photo_url => listing.css('.img-wrapper img').attr('src').value
       )
     end
 
