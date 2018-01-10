@@ -45,7 +45,7 @@ describe "classified client" do
       :location => "South Jordan Utah, UT",
       :link => "https://www.ksl.com/classifieds/listing/50719691",
       :price => Money.new(7500),
-      :photo_url => nil
+      :photo_url => "./New and Used listings in Utah, Idaho, and Wyoming _ ksl.com_files/2857164-1513882557-746845.JPG"
     )
   end
 end
