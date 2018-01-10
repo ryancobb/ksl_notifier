@@ -29,8 +29,15 @@ module KslClient
       @browser.find(".ksl-header-logo")
       
       @browser.body
-    rescue Net::ReadTimeout
-      retry
+    rescue ::Net::ReadTimeout => e
+      attempts ||= 0
+
+      if attempts < 1
+        attempts += 1
+        retry
+      end
+      
+      raise e
     end
     
     def html_results
