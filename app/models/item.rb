@@ -43,10 +43,12 @@ class Item < ApplicationRecord
   end
 
   def parse_query_params
-    URI.parse(search_url).query
+    Rack::Utils.parse_nested_query(URI.parse(search_url).query)
   end
 
   def query_params
-    parse_query_params
+    parsed_params = parse_query_params
+    parsed_params["sort"] = 0 # set sort order to newest to oldest postings
+    parsed_params.to_query
   end
 end
