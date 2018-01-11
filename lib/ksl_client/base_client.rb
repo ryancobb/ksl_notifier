@@ -31,9 +31,9 @@ module KslClient
       @browser.body
     rescue ::Net::ReadTimeout => e
       attempts ||= 0
-
       if attempts < 1
         attempts += 1
+        @browser.driver.quit
         retry
       end
       
