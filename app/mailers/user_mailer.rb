@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
 
     mail(:to => user.email, :subject => "KSL Notify found new listings!")
 
-    # @undelivered_notifications.update_all(:emailed => true)
+    @undelivered_notifications.update_all(:emailed => true)
   end
 
   private
