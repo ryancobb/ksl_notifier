@@ -7,6 +7,8 @@ class UserNotificationEmailWorker
 
     users.find_each do |user|
       ::UserMailer.notification_email(user).deliver_now
+
+      ::UserMailer.deliver_notification_email
     end
   end
 end
