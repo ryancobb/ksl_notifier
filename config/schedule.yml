@@ -1,8 +1,11 @@
 scrape_items_worker:
-  cron: "*/15 * * * *"
+  cron: "*/20 * * * *"
   class: "ScrapeItemsWorker"
 
-send_notification_emails_worker:
-  cron: "0 06-22 * * *"
+send_morning_notification_emails_worker:
+  cron: "30 13-23 * * *" # 6AM - 4PM MST
   class: "UserNotificationEmailWorker"
 
+send_evening_notification_emails_worker:
+  cron: "30 0-5 * * *"  # 5 - 10PM MST
+  class: "UserNotificationEmailWorker"
