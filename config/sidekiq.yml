@@ -1,6 +1,3 @@
 :queues:
   - default
   - browser
-
-:limits:
-  browser: 1

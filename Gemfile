@@ -8,7 +8,6 @@ gem 'selenium-webdriver'
 gem 'money-rails', '~>1'
 gem 'sentry-raven'
 gem 'mailgun-ruby', '~>1.1.6'
-gem 'sidekiq-limit_fetch'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
