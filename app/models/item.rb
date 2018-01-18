@@ -6,20 +6,18 @@ class Item < ApplicationRecord
 
   def update_listings
     new_listings = get_listings
-    
-    new_listings.each do |new_listing|
-      old_listing = listings.find_by_link(new_listing.link)
+    new_listings_links = new_listings.map(&:link)
+    existing_listings = listings.where(:link => new_listings_links, :item_id => id)
 
-      if old_listing.present?
-        new_listing_attributes = new_listing.attributes.reject do |k,v|
-          ["id", "created_at", "updated_at", "item_id"].include?(k)
-        end
-        old_listing.assign_attributes(new_listing_attributes)
-        old_listing.save if old_listing.changed?
-      else
-        new_listing.item_id = id
-        new_listing.save
+    new_listings.reject! do |new_listing|
+      existing_listings.any? do |existing_listing|
+        existing_listing.link == new_listing.link
       end
+    end
+
+    new_listings.each do |new_listing|
+      new_listing.item_id = id
+      new_listing.save
     end
   end
 
