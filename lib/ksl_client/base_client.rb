@@ -33,7 +33,7 @@ module KslClient
       attempts ||= 0
       if attempts < 1
         attempts += 1
-        @browser.page.driver.quit
+        @browser.page.reset!
         retry
       end
       
