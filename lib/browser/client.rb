@@ -3,10 +3,13 @@ module Browser
     attr_accessor :html
 
     def with_session
-      ::Browser::SESSION_POOL.with do |session|
-        yield(session)
-        @html = session.body
-        session.reset!
+      ::Browser::DRIVER_POOL.with do |driver|
+        driver.start_session!
+
+        yield(driver.session)
+        @html = driver.session.body
+
+        driver.end_session!
       end
     end
   end
