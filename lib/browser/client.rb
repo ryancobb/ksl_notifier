@@ -4,12 +4,15 @@ module Browser
 
     def with_session
       ::Browser::DRIVER_POOL.with do |driver|
-        driver.start_session!
+        begin
+          driver.start_session!
 
-        yield(driver.session)
-        @html = driver.session.body
+          yield(driver.session)
+          @html = driver.session.body
 
-        driver.end_session!
+        ensure
+          driver.end_session!
+        end
       end
     end
   end
