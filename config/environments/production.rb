@@ -3,7 +3,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     :api_key => ENV["MAILGUN_API_KEY"],
-    :domain => "sandboxff64203728a14ec5a28d2a15f3f08e63.mailgun.org",
+    :domain => "mg.kslnotify.me",
   }
 
   # Code is not reloaded between requests.
