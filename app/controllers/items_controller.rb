@@ -16,10 +16,10 @@ class ItemsController < ApplicationController
     @item = ::Item.new(item_create_params)
 
     if @item.save
-      flash[:success] = "Item successfuly created"
+      flash[:notice] = "Item successfuly created"
       redirect_to(@item)
     else
-      flash[:error] = @item.errors.full_messages
+      flash[:alert] = @item.errors.messages
       render :new
     end
   end
@@ -33,7 +33,6 @@ class ItemsController < ApplicationController
 
   def refresh
     @item = ::Item.by_user(current_user).find(params[:id])
-
     ::ScrapeItemWorker.perform_async(@item.id)
     flash[:notice] = "Updating item..."
     redirect_to @item

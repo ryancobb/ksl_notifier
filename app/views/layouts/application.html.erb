@@ -20,7 +20,13 @@
     <% if alert %>
       <div class="notification is-warning">
         <button class="delete"></button>
-        <%= alert %>
+        <% alert.each do |attribute, messages| %>
+          <% next unless messages.present? %>
+            <ul><%= attribute %></ul>
+            <% messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+        <% end %>
       </div>
     <% end %>
     <div class="container">
