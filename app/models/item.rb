@@ -4,6 +4,7 @@ class Item < ApplicationRecord
 
   scope :by_user, -> (user) { where(:user_id => user.id) }
 
+  validates :name, :presence => true
   validate :valid_url, :supported_url, :has_query_params
 
   SUPPORTED_URLS = [::KslClient::Auto.regex_matcher, ::KslClient::Classified.regex_matcher].freeze
@@ -54,6 +55,8 @@ class Item < ApplicationRecord
 
   def parsed_query_params
     Rack::Utils.parse_nested_query(URI.parse(search_url).query)
+  rescue ::URI::InvalidURIError
+    {}
   end
 
   def query_params
