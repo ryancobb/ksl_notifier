@@ -107,6 +107,7 @@ GEM
       activesupport (>= 4.2.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    httpclient (2.8.3)
     i18n (0.8.6)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -295,6 +296,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.2)
   devise
+  httpclient
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
