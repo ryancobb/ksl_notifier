@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   validates :name, :presence => true
   validate :valid_url, :supported_url, :has_query_params
 
-  SUPPORTED_URLS = [::KslClient::Auto.regex_matcher, ::KslClient::Classified.regex_matcher].freeze
+  SUPPORTED_URLS = [::Ksl::AutoClient::REGEX_MATCHER, ::Ksl::ClassifiedClient::REGEX_MATCHER].freeze
 
   def update_listings
     new_listings = get_listings
@@ -30,8 +30,8 @@ class Item < ApplicationRecord
 
   def get_listings
     client = infer_client
-    client = client.new(query_params)
-    client.results
+    client = client.new(search_url)
+    client.listings
   end
 
   def has_query_params
@@ -44,10 +44,10 @@ class Item < ApplicationRecord
 
   def infer_client
     case search_url
-    when ::KslClient::Auto.regex_matcher
-      ::KslClient::Auto
-    when ::KslClient::Classified.regex_matcher
-      ::KslClient::Classified
+    when ::Ksl::AutoClient::REGEX_MATCHER
+      ::Ksl::AutoClient
+    when ::Ksl::ClassifiedClient::REGEX_MATCHER
+      ::Ksl::ClassifiedClient
     else
       raise "Unsupported URL: #{search_url}"
     end
@@ -57,12 +57,6 @@ class Item < ApplicationRecord
     Rack::Utils.parse_nested_query(URI.parse(search_url).query)
   rescue ::URI::InvalidURIError
     {}
-  end
-
-  def query_params
-    parsed_params = parsed_query_params
-    parsed_params["sort"] = 0 # set sort order to newest to oldest postings
-    parsed_params.to_query
   end
 
   def supported_url
