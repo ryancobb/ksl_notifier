@@ -74,7 +74,7 @@ module Ksl
     end
 
     def parsed_listings(html_doc)
-      html_doc.css('.listing-group .listing')
+      html_doc.css('.listing-group .listing:not(.spotlight)')
     end
   end
 end

@@ -9,7 +9,7 @@ describe ::Ksl::AutoClient do
     before { allow(subject).to receive(:fetch_page).and_return(response) }
 
     it "parses all listings" do
-      expect(subject.listings.count).to eq(30)
+      expect(subject.listings.count).to eq(24)
     end
 
     it "correctly parses listing" do
