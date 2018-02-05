@@ -3,6 +3,8 @@ module Ksl
     attr_accessor :browser, :url
 
     REGEX_MATCHER = /https:\/\/www.ksl.com\/auto\/search/.freeze
+    SCHEME = "https".freeze
+    HOST = "www.ksl.com".freeze
 
     def initialize(search_url)
       @url = clean_url(search_url)
@@ -16,8 +18,10 @@ module Ksl
     private
 
     def clean_link(link)
-      uri = set_uri(link)
+      uri = URI.parse(link)
 
+      uri.scheme = SCHEME
+      uri.host = HOST
       uri.query = nil
       uri.to_s
     end
@@ -71,13 +75,6 @@ module Ksl
 
     def parsed_listings(html_doc)
       html_doc.css('.listing-group .listing')
-    end
-
-    def set_uri(link)
-      uri = URI.parse(link)
-      url_param = Rack::Utils.parse_query(uri.query).dig("url")
-
-      url_param ? URI.parse(url_param) : uri
     end
   end
 end

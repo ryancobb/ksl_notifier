@@ -9,3 +9,7 @@ send_morning_notification_emails_worker:
 send_evening_notification_emails_worker:
   cron: "30 0-5 * * *"  # 5 - 10PM MST
   class: "UserNotificationEmailWorker"
+
+remove_old_listings:
+  cron: "0 23 * * *"
+  class: "RemoveOldListings"
