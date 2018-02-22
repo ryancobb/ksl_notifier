@@ -64,6 +64,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
   gem 'capistrano-sidekiq'
+  gem 'capistrano3-nginx'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
