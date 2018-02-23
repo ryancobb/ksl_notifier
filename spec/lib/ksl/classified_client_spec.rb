@@ -14,13 +14,13 @@ describe ::Ksl::ClassifiedClient do
 
     it "correctly parses listing" do
       listing = subject.listings.first
-      
-      expect(listing.title).to eq("Female Pomeranian puppy")
-      expect(listing.full_description).to eq("Adorable, great personality, first shot and vet checked,, 8 weeks and ready for her new home, can meet 1/2 way Vernal Utah 435-789-7191 call or text 435-828-7197 or 7198.  (Will sell for $650 this Wednesday if you can meet in fruitland)")
-      expect(listing.location).to eq("Vernal, UT")
-      expect(listing.link).to eq("https://www.ksl.com/classifieds/listing/51136875")
-      expect(listing.price_cents).to eq(70000)
-      expect(listing.photo_url).to eq("//img.ksl.com/mx/mplace-classifieds.ksl.com/266671-1517785115-30349.jpeg")
+
+      expect(listing.title).to eq("Amazing Puppy 12 Weeks Old!")
+      expect(listing.full_description).to eq("She is a lab and heeler mix with the cutest black spots. She is fully transitioned to hard food and loves it. Potty training has been great. She will tell you when she will need to go and will use a puppy pad to pee but does not like to use them for number 2. Instead she will wait until she\u2019s outside. She is so loving and loves to play with other dogs and kids. Really want to have you meet her and me to ensure the right home for her. ")
+      expect(listing.location).to eq("Salt Lake City, UT")
+      expect(listing.link).to eq("https://www.ksl.com/classifieds/listing/51304764")
+      expect(listing.price_cents).to eq(15000)
+      expect(listing.photo_url).to eq("//img.ksl.com/mx/mplace-classifieds.ksl.com/1114449-1519351437-130609.jpg")
     end
   end
 end
