@@ -33,7 +33,7 @@ module Ksl
           :price_cents => parsed_listing["price"] * 100,
           :photo_url => parsed_listing["photo"],
         )
-      end.compact!
+      end.compact
     end
 
     def clean_url(search_url)
