@@ -8,6 +8,7 @@ require 'capistrano/bundler'
 require 'capistrano/rbenv'
 require 'capistrano/puma'
 require 'capistrano/sidekiq'
+require 'capistrano/nginx'
 
 install_plugin Capistrano::Puma
 install_plugin Capistrano::SCM::Git
