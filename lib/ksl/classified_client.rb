@@ -24,7 +24,7 @@ module Ksl
       parsed_listings.map do |parsed_listing|
         next unless parsed_listing["id"].present?
         next if parsed_listing["listingType"] == "featured"
-        
+
         ::Listing.new(
           :title => parsed_listing["title"],
           :full_description => parsed_listing["description"],
@@ -33,7 +33,7 @@ module Ksl
           :price_cents => parsed_listing["price"] * 100,
           :photo_url => parsed_listing["photo"],
         )
-      end.compact!
+      end.compact
     end
 
     def clean_url(search_url)
@@ -54,11 +54,11 @@ module Ksl
       response = http_client.get(url)
       response.body
     end
-    
+
 
     def listings_from_script_tag(script_tag)
       script_tag.gsub!(/^.*listings:/m, "")
-      script_tag.gsub!(/,\n\s*displayType:.*$/m, "")
+      script_tag.gsub!(/,\n\s*spotlights:.*$/m, "")
 
       JSON.parse(script_tag)
     end
