@@ -8,7 +8,7 @@ module Ksl
 
     def initialize(search_url)
       @url = clean_url(search_url)
-      @http_client = ::HTTPClient.new
+      @http_client = http_client
     end
 
     def listings
@@ -55,6 +55,18 @@ module Ksl
       response.body
     end
 
+    def fetch_proxy
+      proxy = proxy_manager.get!
+
+      "http://#{proxy.addr}:#{proxy.port}"
+    end
+
+    def http_client
+      client = ::HTTPClient.new
+      client.proxy = proxy
+
+      client
+    end
 
     def listings_from_script_tag(script_tag)
       script_tag.gsub!(/^.*listings:/m, "")
@@ -72,6 +84,16 @@ module Ksl
 
       script_tag = document.xpath("//script[contains(text(), 'window.renderSearchSection')]").text
       listings_from_script_tag(script_tag)
+    end
+
+    def proxy
+      Rails.cache.fetch('current_proxy', :expires_in => 1.hour) do
+        fetch_proxy
+      end
+    end
+
+    def proxy_manager
+      @proxy_manager ||= ::ProxyFetcher::Manager.new
     end
   end
 end

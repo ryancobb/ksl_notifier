@@ -9,6 +9,7 @@ gem 'money-rails', '~>1'
 gem 'sentry-raven'
 gem 'mailgun-ruby', '~>1.1.6'
 gem 'httpclient'
+gem 'proxy_fetcher'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
