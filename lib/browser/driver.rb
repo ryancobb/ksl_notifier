@@ -16,7 +16,7 @@ module Browser
     def fetch_proxy
       proxy = proxy_manager.get!
 
-      "#{proxy.addr}:#{proxy.port}"
+      "http://#{proxy.addr}:#{proxy.port}"
     end
 
     def proxy
