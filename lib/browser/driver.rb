@@ -2,11 +2,8 @@ module Browser
   class Driver
     attr_reader :session
 
-    FETCH_PROXY_URL = "http://pubproxy.com/api/proxy?format=txt&last_check=30&google=true&https=truetype=http"
-    TEST_URL = 
-
     def start_session!
-      @session = ::Capybara::Session.new(:selenium_chrome)
+      @session = ::Capybara::Session.new(:selenium_chrome_headless)
       set_proxy
     end
 
