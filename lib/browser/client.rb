@@ -7,7 +7,8 @@ module Browser
       ::HTTPClient::BadResponseError,
       ::HTTPClient::ConnectTimeoutError,
       ::HTTPClient::KeepAliveDisconnected,
-      ::Net::ReadTimeout
+      ::Net::ReadTimeout,
+      ::OpenSSL::SSL::SSLError,
     ].freeze
 
     def with_session
