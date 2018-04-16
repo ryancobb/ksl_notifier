@@ -20,7 +20,7 @@ module Browser
     end
 
     def proxy
-      Rails.cache.fetch('current_proxy', :expires_in => 1.hour) do
+      ::Rails.cache.fetch('current_proxy', :expires_in => 1.hour) do
         fetch_proxy
       end
     end
