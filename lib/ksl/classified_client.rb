@@ -5,6 +5,11 @@ module Ksl
 
     REGEX_MATCHER = /^https:\/\/www.ksl.com\/classifieds\/search/.freeze
     LISTING_URL = "https://www.ksl.com/classifieds/listing/".freeze
+    RETRY_EXCEPTIONS = [
+      ::HTTPClient::BadResponseError,
+      ::HTTPClient::ConnectTimeoutError,
+      ::HTTPClient::KeepAliveDisconnected
+    ].freeze
 
     def initialize(search_url)
       @url = clean_url(search_url)
@@ -53,6 +58,15 @@ module Ksl
     def fetch_page
       response = http_client.get(url)
       response.body
+
+    rescue *RETRY_EXCEPTIONS
+      retry_count ||= 0 
+      if retry_count < 1 
+        ::Rails.cache.delete('current_proxy')
+        retry_count += 1
+        retry
+      end
+      raise e
     end
 
     def fetch_proxy

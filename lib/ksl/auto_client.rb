@@ -5,6 +5,10 @@ module Ksl
     REGEX_MATCHER = /https:\/\/www.ksl.com\/auto\/search/.freeze
     SCHEME = "https".freeze
     HOST = "www.ksl.com".freeze
+    RETRY_EXCEPTIONS = [
+      ::Capybara::ElementNotFound,
+      ::Net::ReadTimeout
+    ].freeze
 
     def initialize(search_url)
       @url = clean_url(search_url)
@@ -59,6 +63,14 @@ module Ksl
       end
 
       browser.html
+    rescue *RETRY_EXCEPTIONS
+      retry_count ||= 0 
+      if retry_count < 1 
+        ::Rails.cache.delete('current_proxy')
+        retry_count += 1
+        retry
+      end
+      raise e
     end
 
     def html_results
