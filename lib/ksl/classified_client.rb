@@ -59,7 +59,7 @@ module Ksl
       response = http_client.get(url)
       response.body
 
-    rescue *RETRY_EXCEPTIONS
+    rescue *RETRY_EXCEPTIONS => e
       retry_count ||= 0 
       if retry_count < 1 
         ::Rails.cache.delete('current_proxy')
