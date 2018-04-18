@@ -8,7 +8,8 @@ module Ksl
     RETRY_EXCEPTIONS = [
       ::HTTPClient::BadResponseError,
       ::HTTPClient::ConnectTimeoutError,
-      ::HTTPClient::KeepAliveDisconnected
+      ::HTTPClient::KeepAliveDisconnected,
+      ::OpenSSL::SSL::SSLError
     ].freeze
 
     def initialize(search_url)
