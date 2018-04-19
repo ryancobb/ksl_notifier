@@ -6,9 +6,11 @@ module Ksl
     REGEX_MATCHER = /^https:\/\/www.ksl.com\/classifieds\/search/.freeze
     LISTING_URL = "https://www.ksl.com/classifieds/listing/".freeze
     RETRY_EXCEPTIONS = [
+      ::Errno::ECONNREFUSED,
       ::HTTPClient::BadResponseError,
       ::HTTPClient::ConnectTimeoutError,
       ::HTTPClient::KeepAliveDisconnected,
+      ::HTTPClient::ReceiveTimeoutError,
       ::OpenSSL::SSL::SSLError
     ].freeze
 
@@ -36,7 +38,7 @@ module Ksl
           :full_description => parsed_listing["description"],
           :location => "#{parsed_listing['city']}, #{parsed_listing['state']}",
           :link => listing_url(parsed_listing["id"]),
-          :price_cents => parsed_listing["price"] * 100,
+          :price_cents => price_cents(parsed_listing["price"]),
           :photo_url => parsed_listing["photo"],
         )
       end.compact
@@ -99,6 +101,11 @@ module Ksl
 
       script_tag = document.xpath("//script[contains(text(), 'window.renderSearchSection')]").text
       listings_from_script_tag(script_tag)
+    end
+
+    def price_cents(parsed_price_cents)
+      return nil unless parsed_price_cents.present?
+      parsed_price_cents * 100
     end
 
     def proxy
